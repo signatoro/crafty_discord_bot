@@ -1,6 +1,6 @@
 
 import os
-# import requests
+import requests
 
 import discord
 from dotenv import load_dotenv
@@ -28,7 +28,6 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send('pong!')
 
-
 @bot.command()
 async def say(ctx, *, message):
     """Repeats the message provided by the user."""
@@ -39,11 +38,15 @@ async def whitelist(ctx, user_name: str):
     """Adds two numbers provided by the user."""
     print(user_name)
 
-    # response = requests.post(f"http://{server_ip}:{server_port}/whitelist", data=user_name)
+    response = requests.post(f"http://{server_ip}:{server_port}/whitelist", data=user_name)
     # print(response)
     #send a message to minecraft server controller
     #get response
     await ctx.send("Not implemented yet")
+
+@bot.command()
+async def check_online(ctx, server_id: str):
+
 
 bot.run(discord_api_key)
 
