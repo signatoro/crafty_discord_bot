@@ -49,7 +49,7 @@ async def whitelist(ctx, server_id: str, user_name: str):
     """Adds two numbers provided by the user."""
     print(user_name)
 
-    response = requests.post(f"http://{server_ip}:{server_port}/mc/server/{server_id}", params={"username": f"{user_name}"})
+    response = requests.post(f"http://{server_ip}:{server_port}/mc/server/{server_id}", params={"username": f"{user_name}", 'token': f'{os.getenv("SERVER_TOKEN")}'})
     print(response.json())
     #send a message to minecraft server controller
     #get response
@@ -59,7 +59,7 @@ async def whitelist(ctx, server_id: str, user_name: str):
 async def online(ctx, server_id: str | None):
     print("HERE 1")
 
-    response = requests.get(f"http://{server_ip}:{server_port}/mc/server/{server_id}")
+    response = requests.get(f"http://{server_ip}:{server_port}/mc/server/{server_id}", params={'token': f'{os.getenv("SERVER_TOKEN")}'})
     print(response.json())
 
     await ctx.send(f"RESPONSE: {response.json()}")
